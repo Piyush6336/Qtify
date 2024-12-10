@@ -1,0 +1,23 @@
+.section {
+    margin: 20px;
+  }
+  
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px; /* Space between header and grid */
+  }
+  
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px; /* Space between cards */
+    transition: max-height 0.3s ease; /* Optional: Transition for collapse */
+  }
+  
+  .collapsed {
+    max-height: 0; /* Hide content when collapsed */
+    overflow: hidden; /* Prevent overflow */
+  }
+  

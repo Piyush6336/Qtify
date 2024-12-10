@@ -1,0 +1,21 @@
+/* :root {
+    --button-background-color: black;
+    --button-text-color: #34C94B; 
+  } */
+  
+  .button {
+    background-color:#121212;
+    color: #34C94B;
+    font-family: 'Poppins', sans-serif;
+    padding: 10px 16px 10px 16px;
+    border: 1px;
+    border-radius: 12px;
+    gap: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #333; 
+  }
+  

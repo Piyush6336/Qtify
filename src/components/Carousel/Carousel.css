@@ -1,0 +1,19 @@
+.swiper-container {
+    padding: 20px;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transform: translateY(-50%);
+}
+
+.left-arrow {
+    left: 10px;
+}
+
+.right-arrow {
+    right: 10px;
+}

@@ -1,57 +1,71 @@
-import * as React from "react";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import Chip from "@mui/material/Chip";
-import Stack from "@mui/material/Stack";
-import PropTypes from "prop-types";
-const MediaCard = ({ album }) => {
-    MediaCard.propTypes = {
-        album: PropTypes.shape({
-          image: PropTypes.string.isRequired,
-          title: PropTypes.string.isRequired,
-          follows: PropTypes.number.isRequired,
-        }).isRequired,
-      };
+import React from "react";
+import { Card, CardMedia, CardContent, Typography, Box, Chip } from "@mui/material";
+
+const AlbumCard = ({ album }) => {
   return (
     <Card
       sx={{
-        width: 159,
-        height: 205,
-        gap: 0,
-        borderRadius: "10px 10px 0 0",
+        width: 180,
+        height: 250,
+        borderRadius: "10px",
         overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
-      <CardMedia
-        sx={{ height: "60%" }} // Adjust the height to maintain aspect ratio
-        image={album.image} // Use album's image URL
-        title={album.title} // Use album's title for accessibility
-        alt={`${album.title} album cover`}
-      />
-      <Stack
-        direction="row"
-        spacing={1}
-        sx={{ padding: "8px", justifyContent: "flex-start" }}
-      >
-        <Chip label={`${album.follows} Follows`} color="primary" variant="outlined" />
+      {/* Album Image Section */}
+      <Box sx={{ height: "70%", position: "relative" }}>
+        <CardMedia
+          component="img"
+          image={album.image} // Actual album image
+          alt={album.title}
+          sx={{
+            height: "100%",
+            width: "100%",
+            objectFit: "cover",
+          }}
+        />
+        {/* Follows Chip */}
+        <Chip
+          label={`${album.follows} Follows`}
+          sx={{
+            position: "absolute",
+            bottom: 8,
+            left: 8,
+            backgroundColor: "rgba(255, 255, 255, 0.9)",
+            fontSize: "0.75rem",
+            padding: "4px 8px",
+          }}
+        />
+      </Box>
 
-      </Stack>
-      <Typography
-        variant="h6"
-        component="div"
+      {/* Bottom Section */}
+      <CardContent
         sx={{
-          paddingLeft: "8px",
-          textAlign: "left",
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
+          height: "30%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "8px",
         }}
       >
-        {album.title} {/* Display the album title */}
-      </Typography>
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{
+            textAlign: "center",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            fontSize: "1rem",
+            fontWeight: "bold",
+          }}
+        >
+          {album.title}
+        </Typography>
+      </CardContent>
     </Card>
   );
 };
 
-export default MediaCard;
+export default AlbumCard;

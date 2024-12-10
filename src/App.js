@@ -12,7 +12,7 @@ function App() {
       <div className="App">
         <Navbar />
         <Hero />
-        <Section title="Top Albums" /> {/* Add the Section component */}
+        <Section title="Top Albums" apiUrl="https://qtify-backend-labs.crio.do/albums/top" />
       </div>
     </Router>
         

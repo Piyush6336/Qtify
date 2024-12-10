@@ -1,0 +1,15 @@
+.card {
+    max-width: 200px;
+    border-radius: 10px;
+    margin: 10px;
+  }
+  
+  .card-media {
+    height: 140px;
+    object-fit: cover;
+  }
+  
+  .card-content {
+    text-align: center;
+  }
+  

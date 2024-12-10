@@ -1,26 +1,35 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
-
-const MediaCard = ({ album }) => {
-    return (
-        <Card sx={{ width: 159, height: 205, gap: 0, borderRadius: '10px 10px 0 0', overflow: 'hidden' }}>
-            <CardMedia
-                sx={{ height: '60%' }} // Adjust the height to maintain aspect ratio
-                image={album.image} // Use album's image URL
-                title={album.title} // Use album's title for accessibility
-            />
-            <Stack direction="row" spacing={1} sx={{ padding: '8px', justifyContent: 'flex-start' }}>
-                <Chip label={`${album.follows} Follows`} />
-            </Stack>
-            <Typography variant="h6" component="div" sx={{ paddingLeft: '8px', textAlign: 'left' }}>
-                {album.title} {/* Display the album title */}
-            </Typography>
-        </Card>
-    );
+import React from "react";
+import { Card, CardMedia, CardContent, Typography, Chip } from "@mui/material";
+import PropTypes from "prop-types";
+import './cards.css';
+const AlbumCard = ({ image, title, follows, category }) => {
+  return (
+    <Card style={{ maxWidth: 200, margin: 10, borderRadius: 10 }}>
+      <CardMedia
+        component="img"
+        height="140"
+        image={image}
+        alt={title}
+        style={{ objectFit: "cover" }}
+      />
+      <CardContent>
+        <Chip label={`${follows} Follows`} style={{ marginBottom: 8 }} />
+        <Typography variant="subtitle1" gutterBottom>
+          {title}
+        </Typography>
+        <Typography variant="body2" color="textSecondary">
+          {category}
+        </Typography>
+      </CardContent>
+    </Card>
+  );
 };
 
-export default MediaCard;
+AlbumCard.propTypes = {
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  follows: PropTypes.number.isRequired,
+  category: PropTypes.string,
+};
+
+export default AlbumCard;

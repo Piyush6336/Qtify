@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
-import MediaCard from './components/cards/cards';
+import AlbumCard from './components/cards/cards';
 import Section from './components/Section/section';
 
 function App() {

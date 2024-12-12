@@ -13,8 +13,18 @@ function App() {
       <div className="App">
         <Navbar />
         <Hero />
-        <Section title="Top Albums" apiUrl="https://qtify-backend-labs.crio.do/albums/top" />
-        <TopAlbumsSection title="New Albums"/>
+        <Section 
+          title="Top Albums" 
+          apiUrl="https://qtify-backend-labs.crio.do/albums/top" 
+          alias="getTopAlbums"
+        />
+        
+        {/* New Albums Section */}
+        <Section 
+          title="New Albums" 
+          apiUrl="https://qtify-backend-labs.crio.do/albums/new" 
+          alias="getNewAlbums"
+        />
       </div>
     </Router>
         

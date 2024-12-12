@@ -24,7 +24,8 @@ const Section = ({ title, apiUrl }) => {
 
   const handleToggle = () => {
     setCollapsed(!collapsed);
-    setVisibleCount(collapsed ? albums.length : 6); // Show all or limit to 6
+    // Show all albums when expanded, or limit to 4 when collapsed
+    setVisibleCount(collapsed ? albums.length : 4);
   };
 
   return (
@@ -39,15 +40,15 @@ const Section = ({ title, apiUrl }) => {
       </div>
 
       {collapsed ? (
-        <Carousel items={albums} renderItem={(album) => <AlbumCard album={album} />} />
-      ) : (
         <Grid container spacing={2}>
           {albums.slice(0, visibleCount).map((album) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={album.id}>
+            <Grid item xs={12} sm={6} md={4} lg={4} key={album.id}>
               <AlbumCard album={album} />
             </Grid>
           ))}
         </Grid>
+      ) : (
+        <Carousel items={albums} renderItem={(album) => <AlbumCard album={album} />} />
       )}
     </div>
   );

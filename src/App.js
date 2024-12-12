@@ -5,6 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import AlbumCard from './components/cards/cards';
 import Section from './components/Section/section';
+import TopAlbumsSection from './components/album/album';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Navbar />
         <Hero />
         <Section title="Top Albums" apiUrl="https://qtify-backend-labs.crio.do/albums/top" />
+        <TopAlbumsSection title="New Albums"/>
       </div>
     </Router>
         

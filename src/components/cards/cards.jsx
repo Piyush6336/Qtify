@@ -7,12 +7,12 @@ const AlbumCard = ({ album }) => {
       <CardMedia
         component="img"
         height="140"
-        image={album.image || "https://via.placeholder.com/160x140"}
-        alt={album.title}
+        image={album.songs?.[0]?.image || "https://via.placeholder.com/160x140"}
+        alt={album.songs?.[0]?.title}
       />
       <CardContent>
         <Typography variant="h6" noWrap>
-          {album.title}
+          {album.songs?.[0]?.title}
         </Typography>
         <Chip label={`${album.follows} Follows`} size="small" />
       </CardContent>

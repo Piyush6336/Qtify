@@ -1,39 +1,57 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Section from '../Section/section';
+import { Grid, Button, Typography } from '@mui/material';
 import Carousel from '../Carousel/Carousel';
+import AlbumCard from '../cards/cards'; // Assume this component is created
 
-const NewAlbumsSection = () => {
-    const [newAlbums, setNewAlbums] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+const API = 'https://qtify-backend-labs.crio.do/albums/new';
 
-    useEffect(() => {
-        const fetchNewAlbums = async () => {
-            try {
-                const res = await axios.get('https://qtify-backend-labs.crio.do/albums/new');
-                setNewAlbums(res.data);
-            } catch (err) {
-                console.error("Error fetching new albums:", err);
-                setError("Failed to load new albums.");
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchNewAlbums();
-    }, []);
+const TopAlbumsSection = ({title}) => {
+  const [albums, setAlbums] = useState([]);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
-    return (
-        <Section
-            title="New Albums"
-            albums={newAlbums}
-            loading={loading}
-            error={error}
-            carouselComponent={
-                <Carousel items={newAlbums} renderItem={(album) => <MediaCard album={album} />} />
-            }
+  useEffect(() => {
+    const fetchAlbums = async () => {
+      try {
+        const response = await fetch(API);
+        const data = await response.json();
+        setAlbums(data);
+      } catch (error) {
+        console.error('Error fetching albums:', error);
+      }
+    };
+
+    fetchAlbums();
+  }, []);
+
+  const toggleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+
+  return (
+    <div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
+        <Typography variant="h4" sx={{color:"white"}}>{title}</Typography>
+        <Button variant="contained" onClick={toggleCollapse}>
+          {isCollapsed ? 'Show All' : 'Collapse'}
+        </Button>
+      </div>
+
+      {isCollapsed ? (
+        <Carousel
+          items={albums}
+          renderItem={(album) => <AlbumCard album={album} />}
         />
-    );
+      ) : (
+        <Grid container spacing={2}>
+          {albums.map((album) => (
+            <Grid item xs={12} sm={6} md={4} lg={1} key={album.id}>
+              <AlbumCard album={album} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
+    </div>
+  );
 };
 
-export default NewAlbumsSection;
+export default TopAlbumsSection;
